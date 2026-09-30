@@ -13,9 +13,11 @@ about scaling up. Case studies: `references/case-studies.md`. Code: `examples/`.
 
 ## Your tools
 
-`um` is the toolkit CLI. The plugin's session hook puts it on PATH. If `um` isn't found, run it as
-`${CLAUDE_PLUGIN_ROOT}/bin/um`, or `bin/um` inside a clone of universal-modder. The first run sets up its
-Python env through `uv`. Every group has `--help` with examples.
+`um` is the toolkit CLI. opencode (via `.opencode/plugins/universal-modder.js`) and the Claude Code plugin
+put `bin/` on PATH, so `um ...` just works (on Windows `um` resolves to `bin\um.cmd`). If `um` isn't found,
+run `bin/um` (bash), `bin\um.cmd` (Windows) or `uv run um` inside a clone of universal-modder, or
+`${CLAUDE_PLUGIN_ROOT}/bin/um` in the Claude Code plugin. The first run sets up its Python env through `uv`.
+Every group has `--help` with examples.
 
 | Need | Command |
 |---|---|

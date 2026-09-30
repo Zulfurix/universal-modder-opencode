@@ -3,12 +3,13 @@
 </p>
 
 <p align="center">
-  <b>Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own.</b><br>
+  <b>Skills, tools and the fal MCP that let opencode (or Claude Code) mod almost any PC game you own.</b><br>
   It finds the game, works out the engine and the modding route, reads the real code, builds the mod,<br>
   generates art, 3D and sound with <a href="https://fal.ai">fal</a>, tests it in the running game, and cuts the showcase video.
 </p>
 
 <p align="center">
+  <a href="#install"><img alt="opencode" src="https://img.shields.io/badge/opencode-ready-B6FF3B?labelColor=0A0D12"></a>
   <a href="#install"><img alt="Claude Code plugin" src="https://img.shields.io/badge/Claude%20Code-plugin-B6FF3B?labelColor=0A0D12"></a>
   <a href="https://fal.ai"><img alt="assets by fal" src="https://img.shields.io/badge/assets-fal-B6FF3B?labelColor=0A0D12"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-B6FF3B?labelColor=0A0D12"></a>
@@ -20,13 +21,20 @@
 
 ## Install
 
-**As a Claude Code plugin** (recommended):
+**With opencode** (no Claude needed):
+```bash
+git clone https://github.com/rehan-remade/universal-modder && cd universal-modder && opencode
+```
+`opencode.json` loads the skills, registers the fal MCP server and puts `um` on PATH. Restart opencode
+after changing it.
+
+**As a Claude Code plugin** (recommended for Claude users):
 ```
 /plugin marketplace add rehan-remade/universal-modder
 /plugin install universal-modder@universal-modder
 ```
 
-**Or clone it and run Claude inside it** (works with Codex/Cursor via `AGENTS.md` too):
+**Or clone it and run Claude Code inside it** (works with Codex/Cursor via `AGENTS.md` too):
 ```bash
 git clone https://github.com/rehan-remade/universal-modder && cd universal-modder && claude
 ```
@@ -48,7 +56,7 @@ needed for 3D → sprite renders. Windows games are driven natively or from WSL.
 
 > What engine is `C:\Games\Foo`, and how do people mod it?
 
-Claude starts with the **mod-any-game** skill and runs the same loop every time: recon, pick a route, set up a
+The agent starts with the **mod-any-game** skill and runs the same loop every time: recon, pick a route, set up a
 safe lab (saves backed up), read the actual code, build one working slice, generate assets, verify in the
 real game, record, then package.
 
@@ -81,9 +89,10 @@ real game, record, then package.
 | `um backup` | Snapshot, diff and restore save folders |
 | `um publish check` | Blocks shipping game files, decompiled code and leaked keys |
 
-Also bundled: the **fal MCP server** (`.mcp.json`), a SessionStart hook that puts `um` on PATH, and two
-no-build Windows tools in `tools/win/`: WinDrive input and ProcLoopback game-only audio, both PowerShell with
-embedded C#.
+Also bundled: the **fal MCP server** (`.mcp.json` for Claude Code, `opencode.json` for opencode), the hooks
+that put `um` on the path (a SessionStart hook for Claude Code, `.opencode/plugins/universal-modder.js` for
+opencode), and two no-build Windows tools in `tools/win/`: WinDrive input and ProcLoopback game-only audio,
+both PowerShell with embedded C#.
 
 <p align="center"><img src="docs/media/pipeline.png" alt="3D route: fal concept to 3D to 16 AoE2 headings. 2D route: fal art to cutout to a 64x26 Terraria sprite in game." width="100%"></p>
 

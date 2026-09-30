@@ -13,11 +13,10 @@ boss music, a voiced line.
 - **Key.** `FAL_KEY` must be set (create one at https://fal.ai/dashboard/keys). `um fal` also reads it from
   a `.env` file (`FAL_KEY=...`) in the working folder. Never write the key into mod files; `um publish check`
   flags leaked keys.
-- **MCP.** This plugin registers fal's hosted MCP server (`https://mcp.fal.ai/mcp`, `Authorization: Bearer
-  ${FAL_KEY}`). Without the plugin:
-  ```bash
-  claude mcp add --transport http fal-ai https://mcp.fal.ai/mcp --header "Authorization: Bearer $FAL_KEY"
-  ```
+- **MCP.** fal's hosted MCP server (`https://mcp.fal.ai/mcp`, `Authorization: Bearer ${FAL_KEY}`) is
+  registered automatically: opencode reads `opencode.json`, Claude Code reads `.mcp.json` (or gets it from
+  the plugin). Without it, register that URL with that header yourself (Claude Code:
+  `claude mcp add --transport http fal-ai https://mcp.fal.ai/mcp --header "Authorization: Bearer $FAL_KEY"`).
   MCP tools: `search_models`, `recommend_model`, `get_model_schema`, `get_pricing`, `run_model`,
   `submit_job`/`check_job`/`get_job_result`, `upload_file`, `search_docs`.
 - **CLI alternatives:** `pip install fal` gives `fal api <endpoint> key=value key:=json`; the genmedia CLI
